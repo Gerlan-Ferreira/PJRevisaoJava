@@ -3,13 +3,10 @@ package modelo;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Funcionario{
+public class Funcionario extends Endereco{
 	
 	private int id;
 	private String nome;
-	private int cpf;
-	private Departamento departamento;
-	private Endereco endereco;
 	public static ArrayList Funcionario  = new ArrayList();
 	
 	public Funcionario() {
@@ -17,11 +14,10 @@ public class Funcionario{
 		
 	}
 
-	public Funcionario(int id, String nome, int cpf) {
+	public Funcionario(int id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.cpf = cpf;
 	
 	}
 
@@ -41,19 +37,11 @@ public class Funcionario{
 		this.nome = nome;
 	}
 
-	public int getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
-	}
-
 
 	@Override
 	public String toString() {
-		return "Funcionario Id: " + id + "\n Nome: " + nome + "\n CPF: " + cpf + "\n Rua: " + endereco.getRua() + 
-				"\n Bairro: " + endereco.getBairro() + "\n Cidade: " + endereco.getCidade() + "\n Departamento: " + departamento.getNome(); 
+		return "\n Id: " + id + "\n Nome: " + nome + "\n Rua: " + this.getRua() + "\n Bairro: " + this.getBairro()
+		+ "\n Cidade: " + this.getCidade(); 
 	}
 	
 	
@@ -61,6 +49,7 @@ public class Funcionario{
 	public void MenuFuncionario() {
 		
 		Scanner teclado = new Scanner(System.in);
+		//Endereco endereco_func = new Endereco();
 		
 		int cod = 0;
 		int cod_endereco = 0;
@@ -93,22 +82,22 @@ public class Funcionario{
 				cod++;
 				cod_endereco++;
 				func.setId(cod);
-				func.endereco.setId(cod_endereco);
+				func.setId_end(cod_endereco);
 				
 				System.out.println("Informe o nome do funcionario: ");
-				func.setNome(teclado.nextLine());
+				func.setNome(teclado.next());
+				teclado.nextLine();
 				
 				System.out.println("Informe o nome da rua do funcionario: ");
 				
-				func.endereco.setRua(teclado.nextLine());
+				func.setRua(teclado.nextLine());
 				
 				System.out.println("Informe o nome do bairro do funcionario: ");
-				func.endereco.setBairro(teclado.next());
+				func.setBairro(teclado.next());
+				teclado.nextLine();
 				
 				System.out.println("Informe a cidade onde reside o funcionario: ");
-				func.endereco.setCidade(teclado.nextLine());
-				
-				System.out.println("Informe o código do departamento no qual esse funcionario faz parte: ");
+				func.setCidade(teclado.nextLine());
 				
 				System.out.println("--------------------------------------------------------");
 				System.out.println("Segue abaixo os departamentos cadastradas no sistema: ");
@@ -117,17 +106,21 @@ public class Funcionario{
 				for (int i = 0; i < Departamento.Departamento.size(); i++) {
 					
 					System.out.println("------------------------------------");
-					System.out.println("Departamentos: ");
+					System.out.println("\t Departamentos: ");
+					System.out.println("------------------------------------");
 					System.out.println(Departamento.Departamento.get(i).toString());
 					System.out.println("------------------------------------");
 				}
-				int cod_dep = teclado.nextInt();
+				
+				System.out.println("Informe o código do departamento no qual esse funcionario faz parte: ");
+				
+				int cod_func = teclado.nextInt();
 				
 				for (int i = 0; i < Departamento.Departamento.size(); i++) {
 					
 					Departamento aux_dep = (Departamento) Departamento.Departamento.get(i);
 					
-					if (aux_dep.getCodigo() == cod_dep) {
+					if (aux_dep.getCodigo() == cod_func) {
 						
 						
 					}else {
@@ -154,6 +147,7 @@ public class Funcionario{
 						
 						System.out.println("--------------------------");
 						System.out.println("\t Funcionarios: ");
+						System.out.println("---------------------------");
 						System.out.println(Funcionario.get(i).toString());
 						System.out.println("---------------------------");
 						
@@ -183,6 +177,7 @@ public class Funcionario{
 						
 						System.out.println("--------------------------");
 						System.out.println("\t Funcionarios: ");
+						System.out.println("---------------------------");
 						System.out.println(Funcionario.get(i).toString());
 						System.out.println("---------------------------");
 						

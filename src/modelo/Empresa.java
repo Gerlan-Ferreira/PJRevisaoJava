@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 
-public class Empresa {
+public class Empresa extends Endereco{
 	
 	private int codigo;
 	private String nome;
@@ -45,7 +45,8 @@ public class Empresa {
 
 	@Override
 	public String toString() {
-		return "Codigo: " + codigo + "\nNome: " + nome;
+		return "Codigo: " + codigo + "\nNome: " + nome + "\nRua: " 
+	+ this.getRua() + "\nBairro: " + this.getBairro() + "\nCidade: " + this.getCidade();
 	}
 
 
@@ -70,13 +71,13 @@ public class Empresa {
 			case 1:
 				
 				Empresa emp = new Empresa();
-				Endereco end = new Endereco();
+				//Endereco end = new Endereco();
 				
 				cod++;
 				cod_end++;
 				
 				emp.setCodigo(cod);
-				end.setId(cod_end);
+				emp.setId_end(cod_end);
 				
 				System.out.println("Informe o nome da sua empresa: ");
 				
@@ -85,20 +86,22 @@ public class Empresa {
 				
 				System.out.println("Informe o nome da rua da empresa: ");
 				
-				end.setRua(teclado.nextLine());
+				emp.setRua(teclado.nextLine());
 				
 				System.out.println("Informe o nome do bairro da empresa: ");
-				end.setBairro(teclado.nextLine());
+				emp.setBairro(teclado.nextLine());
 				
 				System.out.println("Informe a cidade onde reside a empresa: ");
-				end.setCidade(teclado.nextLine());
+				emp.setCidade(teclado.nextLine());
 			
 				Empresa.add(emp);
 				
 				System.out.println("================================");
 				
 				for (int i = 0; i < Empresa.size(); i++) {
-					System.out.println(Empresa.get(i).toString().concat("\nRua: " + end.getRua() + "\nBairro: " + end.getBairro() + "\nCidade: " + end.getCidade()));
+					System.out.println("================================");
+					System.out.println(Empresa.get(i).toString());
+					System.out.println("================================");
 				}
 				
 				System.out.println("================================");
@@ -110,7 +113,7 @@ public class Empresa {
 		}while (opcao!= 2);
 		
 		
-		teclado.close();
+	
 	}
 	
 

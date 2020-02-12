@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Departamento{
+public class Departamento extends Endereco{
 	
 	private int codigo;
 	private String nome;
-	private Endereco endereco_dep;
-	private Empresa empresa;
 	
 	public static ArrayList Departamento = new ArrayList();
 	
@@ -43,8 +41,10 @@ public class Departamento{
 
 	@Override
 	public String toString() {
-		return "Departamento \n Codigo: " + codigo + "\n Nome: " + nome + "\n Rua: " + endereco_dep.getRua() + 
-				"\n Bairro: " + endereco_dep.getBairro() + "\n Cidade: " + endereco_dep.getCidade() + "Empresa: " + empresa.getNome() ;
+		return "\nCodigo: " + codigo + "\nNome: " + nome +
+				"\nRua: " + this.getRua() + 
+				"\nBairro: " + this.getBairro() + 
+				"\nCidade: " + this.getCidade();
 	}
 	
 	
@@ -52,6 +52,8 @@ public class Departamento{
 	public void MenuDepartamento() {
 		
 		Scanner teclado = new Scanner(System.in);
+		
+		//Endereco endereco_dep = new Endereco();
 		
 		int cod = 0;
 		int cod_endereco = 0;
@@ -78,26 +80,27 @@ public class Departamento{
 				}else {
 				
 				Departamento dep  = new Departamento();
+				
 				cod++;
 				cod_endereco++;
 				
 				dep.setCodigo(cod);
-				dep.endereco_dep.setId(cod_endereco);
+				dep.setId_end(cod_endereco);
 				
 				System.out.println("Informe o nome do departamento: ");
-				dep.setNome(teclado.nextLine());
+				dep.setNome(teclado.next());
+				teclado.nextLine();
 				
 				System.out.println("Informe o nome da rua do departamento: ");
 				
-				dep.endereco_dep.setRua(teclado.nextLine());
+				dep.setRua(teclado.nextLine());
 				
 				System.out.println("Informe o nome do bairro do departamento: ");
-				dep.endereco_dep.setBairro(teclado.next());
+				dep.setBairro(teclado.next());
+				teclado.nextLine();
 				
 				System.out.println("Informe a cidade onde reside o departamento: ");
-				dep.endereco_dep.setCidade(teclado.nextLine());
-				
-				System.out.println("Informe o código da empresa no qual esse departamento faz parte: ");
+				dep.setCidade(teclado.nextLine());
 				
 				System.out.println("--------------------------------------------------------");
 				System.out.println("Segue abaixo as Empresas cadastradas no sistema: ");
@@ -106,11 +109,16 @@ public class Departamento{
 				for (int i = 0; i < Empresa.Empresa.size(); i++) {
 					
 					System.out.println("------------------------------------");
-					System.out.println("Empresas: ");
+					System.out.println("\t Empresas: ");
+					System.out.println("--------------------------");
 					System.out.println(Empresa.Empresa.get(i).toString());
 					System.out.println("------------------------------------");
 				}
+				
+				System.out.println("Informe o código da empresa no qual esse departamento faz parte: ");
 				int cod_empresa = teclado.nextInt();
+				
+				
 				for (int i = 0; i < Empresa.Empresa.size(); i++) {
 					
 					Empresa aux = (Empresa) Empresa.Empresa.get(i);
@@ -126,6 +134,7 @@ public class Departamento{
 				
 				
 				Departamento.add(dep);
+				
 				}
 				break;
 				
@@ -142,6 +151,7 @@ public class Departamento{
 						
 						System.out.println("--------------------------");
 						System.out.println("\t Departamento: ");
+						System.out.println("--------------------------");
 						System.out.println(Departamento.get(i).toString());
 						System.out.println("---------------------------");
 						
@@ -171,7 +181,8 @@ public class Departamento{
 					for (int i = 0; i < Departamento.size(); i++) {
 						
 						System.out.println("--------------------------");
-						System.out.println("\t Departamento: ");
+						System.out.println("\t Departamentos: ");
+						System.out.println("---------------------------");
 						System.out.println(Departamento.get(i).toString());
 						System.out.println("---------------------------");
 						
@@ -180,6 +191,7 @@ public class Departamento{
 					System.out.println("Quais dos departamentos apresentados acima você deseja remover? ");
 					System.out.println("--------------------------------------------------------");
 					System.out.println("Informe o Codigo do departamento que você deseja remover!");
+					System.out.println("--------------------------------------------------------");
 					int codDep = teclado.nextInt();
 					
 					for (int i = 0; i < Departamento.size(); i++) {
